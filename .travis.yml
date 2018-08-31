@@ -1,0 +1,11 @@
+---
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - sudo apt-get update -qq
+
+script:
+  - ./tests/travis_test_ketchup.sh
