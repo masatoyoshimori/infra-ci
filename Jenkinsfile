@@ -1,7 +1,7 @@
 node {
-     stage "111111111111111"
+     stage "-------TEST1--------"
      sh "echo Hello pipeline"
   
-     stage "222222222222222"
+     stage "-------TEST2--------"
      sh 'date'
 }
