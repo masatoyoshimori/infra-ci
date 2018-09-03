@@ -1,7 +1,25 @@
-node {
-     stage "-------TEST1--------"
-     sh "echo test1"
-  
-     stage "-------TEST2--------"
-     sh 'date'
+pipeline {
+    // 1行コメント
+    /*
+     * 複数行コメント
+     */
+    stages {
+        stage("-------SCM checkout-------"){
+            steps{
+                echo 'helloworld'
+            }
+        }
+
+        stage("-------構文チェック-------"){
+            steps{
+                echo 'helloworld'
+            }
+        }
+
+         stage("-------lint-------"){
+            steps{
+                echo 'helloworld'
+            }
+        }
+    }
 }
