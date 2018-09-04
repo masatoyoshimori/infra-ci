@@ -5,13 +5,13 @@ pipeline {
      * 複数行コメント
      */
     stages {
-        stage("--cleanWs--"){
+        stage("cleanWs"){
             steps{
                 cleanWs()
             }
         }
 
-        stage("--SCM checkout--"){
+        stage("SCMcheckout"){
             steps{
                 checkout([$class: 'GitSCM',
                  branches: [[name: '*/issue#7']],
@@ -22,15 +22,15 @@ pipeline {
             }
         }
 
-        stage("--構文チェック--"){
+        stage("構文チェック"){
             steps{
                 sh 'ansible-playbook --syntax-check site.yml'
             }
         }
 
-         stage("--lint--"){
+         stage("lint"){
             steps{
-                sh 'ansible-lint --force-color -v site.yml'
+                sh 'ansible-lint --force-color -v ketchup_nginx.yml'
             }
         }
     }
