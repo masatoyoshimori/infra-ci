@@ -5,9 +5,14 @@ pipeline {
      * 複数行コメント
      */
     stages {
-        stage("-------SCM checkout-------"){
+        stage("--cleanWs--"){
             steps{
-                echo 'helloworld'
+                cleanWs()
+            }
+        }
+
+        stage("--SCM checkout--"){
+            steps{
                 checkout([$class: 'GitSCM',
                  branches: [[name: '*/issue#7']],
                  doGenerateSubmoduleConfigurations: false,
@@ -15,17 +20,17 @@ pipeline {
                  submoduleCfg: [],
                  userRemoteConfigs: [[url: 'git@github.com:masatoyoshimori/infra-ci.git']]])
             }
-                   }
+        }
 
-        stage("-------構文チェック-------"){
+        stage("--構文チェック--"){
             steps{
-                echo 'helloworld'
+                sh 'ansible-playbook --syntax-check site.yml'
             }
         }
 
-         stage("-------lint-------"){
+         stage("--lint--"){
             steps{
-                echo 'helloworld'
+                sh 'ansible-lint --force-color -v site.yml'
             }
         }
     }
